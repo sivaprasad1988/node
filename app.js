@@ -28,16 +28,16 @@ const server = http.createServer((req, res) => {
       body.push(chunk);
     });
 
-    req.on("end", () => {
+    return req.on("end", () => {
       const parseBody = Buffer.concat(body).toString();
       const message = parseBody.split("=")[1];
-      fs.writeFileSync("mydata.txt", message);
+      fs.writeFile("mydata.txt", message, (err) => {
+        res.writeHead("302", {
+          Location: "/",
+        });
+        return res.end();
+      });
     });
-
-    res.writeHead("302", {
-      Location: "/",
-    });
-    return res.end();
   }
   res.setHeader("Content-Type", "text/html");
   res.write(
