@@ -21,7 +21,7 @@ const reqHandler = (req, res) => {
     return res.end();
   }
 
-  if (url === "/create-user") {
+  if (url === "/create-user" && method === "POST") {
     const body = [];
     req.on("data", (chunk) => {
       body.push(chunk);
@@ -30,14 +30,12 @@ const reqHandler = (req, res) => {
     return req.on("end", () => {
       const parseBody = Buffer.concat(body).toString();
       const message = parseBody.split("=")[1];
+      console.log(message);
       res.writeHead("302", {
         Location: "/",
       });
-      console.log(message);
-
-      return message;
+      return res.end();
     });
-    return res.end();
   }
 
   if (url === "/users") {
