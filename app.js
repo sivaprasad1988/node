@@ -39,9 +39,14 @@ const server = http.createServer((req, res) => {
       });
     });
   }
+
   res.setHeader("Content-Type", "text/html");
   res.write(
-    "<html><head><title>Hello</title></head><body>Hello </body></html>"
+    `<html>
+    <head>
+    <title>Hello</title></head>
+    <body>Hello </body>
+    </html>`
   );
   res.end();
 });
