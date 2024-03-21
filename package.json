@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sivaprasad1988/node#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.19.1"
   },
   "devDependencies": {
